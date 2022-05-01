@@ -6,7 +6,7 @@ class Cross extends Piece {
 	}
 
 	draw() {
-		const size = 10;
+		const size = 15;
 		const center = this.getCenter();
 		const top_left = createVector(center.x - this.r * 0.5 + size, center.y - this.r * 0.5 + size);
 		const top_right = createVector(center.x + this.r * 0.5 - size, center.y - this.r * 0.5 + size);

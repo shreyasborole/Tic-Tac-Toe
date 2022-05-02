@@ -1,4 +1,3 @@
-// TODO: PvP is broken
 const player1 = Circle.symbol
 const player2 = Cross.symbol
 
@@ -24,7 +23,7 @@ class TicTacToe {
 
     set gameOver(value) { this.#gameOver = value };
 
-    constructor(gridSize = 3, initialPlayer = player1) {
+    constructor(initialPlayer, gridSize = 3) {
         this.#gridSize = gridSize;
         this.#board = ((m, n) => Array.from({ length: m }, () => new Array(n).fill(null)))(this.#gridSize, this.#gridSize);
 

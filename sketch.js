@@ -3,7 +3,7 @@ let game = null;
 function setup() {
     createCanvas(400, 400);
     frameRate(60);
-	game = new TicTacToe(3, player1);
+	game = new TicTacToe(player1);
 }
 
 function mousePressed() {

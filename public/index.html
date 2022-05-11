@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js" integrity="sha512-pxLMWs4E33rW9tdIhovcCp2dCo9k4Q8eHw7CETjyjdXf4aX6wvsEBq+KdOJJRFALr6FxNoXx+jksgbE74TZjEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- p5js scripts -->
+    <script src="Animation.js"></script>
+    <script src="AnimatedLine.js"></script>
+    <script src="Piece.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Cross.js"></script>
+    <script src="TicTacToe.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<body>
+    <label for="symbol">Symbol:</label>
+    <select name="symbol" id="symbol">
+        <option value="X">X</option>
+        <option value="O">O</option>
+    </select>
+    <button id="btn">Play</button>
+    <div id="p5_canvas"></div>
+
+    <script>
+        const symbol = document.querySelector('#symbol');
+        const btn = document.querySelector('#btn');
+        var player = null;
+        btn.onclick = (event) => {
+            event.preventDefault();
+            player = symbol.options[symbol.selectedIndex].text == 'O' ? player2 : player1;
+            let myp5 = new p5(p5sketch, 'p5_canvas');
+            btn.disabled = true;
+        };
+    </script>
+</body>
+
+</html>

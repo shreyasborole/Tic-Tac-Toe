@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <!-- libraries -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js" integrity="sha512-pxLMWs4E33rW9tdIhovcCp2dCo9k4Q8eHw7CETjyjdXf4aX6wvsEBq+KdOJJRFALr6FxNoXx+jksgbE74TZjEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"
+        integrity="sha512-pxLMWs4E33rW9tdIhovcCp2dCo9k4Q8eHw7CETjyjdXf4aX6wvsEBq+KdOJJRFALr6FxNoXx+jksgbE74TZjEw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -26,19 +28,45 @@
         <option value="X">X</option>
         <option value="O">O</option>
     </select>
+
+    <label for="host">Is host:</label>
+    <select name="host" id="host">
+        <option value="false">False</option>
+        <option value="true">True</option>
+    </select>
+
+    <label for="code">Code:</label>
+    <input type="text" id="code" name="code">
+
     <button id="btn">Play</button>
+
     <div id="p5_canvas"></div>
 
     <script>
+        function generateCode(length = 0) {
+            return Math.random().toString(36).replace('0.', '').substring(length - 2);
+        }
         const symbol = document.querySelector('#symbol');
+        const host = document.querySelector('#host');
         const btn = document.querySelector('#btn');
-        var player = null;
+        const codeText = document.querySelector('#code');
+
+        var player = null, isHost = null, code = null;
         btn.onclick = (event) => {
             event.preventDefault();
+            isHost = host.options[host.selectedIndex].value === 'true' ? true : false;
+            code = isHost === true ? generateCode(6) : codeText.value;
             player = symbol.options[symbol.selectedIndex].text == 'O' ? player2 : player1;
             let myp5 = new p5(p5sketch, 'p5_canvas');
             btn.disabled = true;
         };
+
+        document.addEventListener('input', function (event) {
+            if (event.target.id !== 'host') return;
+            if (event.target.value === 'true') codeText.disabled = true;
+            if (event.target.value === 'false') codeText.disabled = false;
+        }, false);
+        
     </script>
 </body>
 

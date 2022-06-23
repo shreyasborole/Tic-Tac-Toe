@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"
+        integrity="sha512-pxLMWs4E33rW9tdIhovcCp2dCo9k4Q8eHw7CETjyjdXf4aX6wvsEBq+KdOJJRFALr6FxNoXx+jksgbE74TZjEw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../../shared/style.css">
+
+    <!-- p5js scripts -->
+    <script src="/shared/Animation.js"></script>
+    <script src="/shared/AnimatedLine.js"></script>
+    <script src="/shared/Piece.js"></script>
+    <script src="/shared/Circle.js"></script>
+    <script src="/shared/Cross.js"></script>
+    <script src="/shared/TicTacToe.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<body>
+    <a href="/ttt_b.html" style="text-decoration: none;">
+        <button type="button" class="transparent-button">
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </button>
+    </a>
+    <button type="button" class="transparent-button" onclick="window.location.reload(true)">
+        <ion-icon name="refresh-circle-outline" id="refresh"></ion-icon>
+    </button>
+
+    <div id="p5_canvas"></div>
+    
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+        var isHost = false;
+        var code = localStorage.getItem('validatecode');
+        var player = player1;
+        let myp5 = new p5(p5sketch, 'p5_canvas');
+    </script>
+</body>
+
+</html>

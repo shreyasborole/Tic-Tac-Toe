@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: rgb(206, 226, 233);">
+    <a href="ttt_b.html" style="text-decoration: none;">
+        <button type="button" class="transparent-button">
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </button>
+    </a>
+    <h2>Rules for Playing Tic Tac Toe(ButterScotch)</h2>
+    <br>
+    <br>
+    <p class="para">
+        This game is a modified version of Tic Tac Toe. <br> It also is a 2 Player game but instead of each player
+        playing with one variable <br> i.e. X and O we have two variables for each player say X1, X2 and O1,O2. Here
+        each player has to play in
+        the specified order i.e. X1-O1-X2-O2 and X1 again, and so on.<br> Rules to play this game : <br> 1.X1 and O1
+        variables have to be placed in an empty spot.<br> 2.X2 can replace O1 only and similarly O2 can replace X1 only.
+        <br><br> Consider its
+        Player 1's turn to place its X2 variable, in this case he has two options :<br> 1.Place it on an empty
+        spot(ideal way of playing).<br> 2.Replace an existing O1's place. <br><br> Winning Conditions :<br> The winning
+        conditions are same as that
+        of the Vanilla Tic Tac Toe, i.e. you need 3 X's or O's (irrespective of whether it is X1 or X2) in a row, column
+        or diagonal. <br><br> Tie Conditions :<br> In our game this condition is a little rare to occur. It can be a
+        tie<br> 1.When the board
+        has no empty spot and the next player to play is either X1 or O1 (since they have to be placed in an empty
+        spot.)<br> 2.When the board has no empty spot and the next player to play is either X2 or O2. In this case the
+        player has an advantage since
+        he has a chance to overlap an existing appropriate variable to either create a winning condition for itself or
+        it'll still be a tie.
+    </p>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>

@@ -7,17 +7,17 @@ let p5sketch = (sketch) => {
 
     let status;
     let lobbyCode;
+    let resultP;
 
     sketch.setup = () => {
         sketch.createCanvas(400, 400);
         sketch.frameRate(60);
 
+        lobbyCode = sketch.createP(code);
+        lobbyCode.style('font-size', '26pt');
         status = sketch.createP('');
         status.style('font-size', '26pt');
-        lobbyCode = sketch.createP('');
-        lobbyCode.style('font-size', '26pt');
-        lobbyCode.html(code);
-
+        resultP = sketch.createP('');
         game = new TicTacToe(sketch, player);
 
         socket = io.connect('http://localhost:3000');
@@ -38,23 +38,6 @@ let p5sketch = (sketch) => {
             myTurn = data.symbol !== symbol;
 
             if (!game.gameOver) renderTurnMessage();
-
-            // // If the game is still going, show who's turn it is
-            // if (!isGameOver()) {
-            //     renderTurnMessage();
-
-            //     // If the game is over
-            // } else {
-            //     // Show the message for the loser
-            //     if (myTurn) {
-            //         status.html('Game Over! You lost');
-            //     } else {
-            //     // Show the message for the winner
-            //         status.html('Game Over! You won');
-            //     }
-
-            // Disable the board
-            // $(".board button").attr("disabled", true);
         }
         );
 
@@ -91,6 +74,11 @@ let p5sketch = (sketch) => {
         } else {
             status.html("Your turn");
         }
+        let result = game.checkWinner();
+        if (result != null) {
+            game.gameOver = true;
+            status.html(`${result} wins!`);
+        }
     }
 
     sketch.mousePressed = () => {
@@ -107,21 +95,7 @@ let p5sketch = (sketch) => {
     }
 
     sketch.draw = () => {
-        sketch.background(68, 55, 55);
+        sketch.background(206, 226, 233);
         game.draw();
-
-        if (!game.gameOver) {
-            let result = game.checkWinner();
-            if (result != null) {
-                game.gameOver = true;
-                let resultP = sketch.createP('');
-                resultP.style('font-size', '32pt');
-                if (result == 'tie') {
-                    resultP.html("Tie!")
-                } else {
-                    resultP.html(`${result} wins!`);
-                }
-            }
-        }
     }
 }

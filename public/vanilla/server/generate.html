@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+    <a href="v_server.html" style="text-decoration: none;">
+        <button type="button" class="transparent-button">
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </button>
+    </a>
+    <div>
+        <h1 class="title">Server <br>
+            <ion-icon name="game-controller-outline"></ion-icon>
+        </h1>
+    </div>
+    <div class="container">
+        <a href="#">
+            <button type="button" class="button" onclick="generate()">
+                <span class="button_text">Generate Code</span>
+            </button></a>
+        <form class="form">
+            <input type="text" placeholder="Code" id="myInput" class="button" style="width: 100px;"/>
+        </form>
+        <a href="#">
+            <button type="button" class="button" onclick="copy()">
+                <span class="button_text1">Copy</span>
+            </button></a>
+        <a href="index.html">
+            <button type="button" class="button">
+                <span class="button_text2">Start</span>
+            </button>
+        </a>
+    </div>
+
+    <script>
+        var copyText = document.getElementById("myInput");
+        copyText.disabled = true;
+
+        function generateCode(length = 0) {
+            return Math.random().toString(36).replace('0.', '').substring(length - 2);
+        }
+        function generate(){
+            copyText.value = String(generateCode(6));
+            localStorage.setItem('code', copyText.value);
+        }
+        function copy() {
+            if (copyText.value !== ''){
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value);
+                alert("Code copied: " + copyText.value);
+            }else{
+                alert("Generate code first");
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    
+</body>
+
+</html>

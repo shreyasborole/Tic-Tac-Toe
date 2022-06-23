@@ -2,7 +2,7 @@ const player1 = Circle.symbol;
 const player2 = Cross.symbol;
 
 // TODO: Fix AI symbol (when isAI = true)
-const isAI = false;
+// const isAI = true;
 
 const DEBUG = false;
 
@@ -14,6 +14,7 @@ class TicTacToe {
     #gridLines;
     #winningLine;
     #sketch;
+    #isAI;
 
     get gridSize() { return this.#gridSize };
 
@@ -25,7 +26,9 @@ class TicTacToe {
 
     set gameOver(value) { this.#gameOver = value };
 
-    constructor(sketch, initialPlayer, gridSize = 3) {
+    set isAI(value) { this.#isAI = value };
+
+    constructor(sketch, initialPlayer, gridSize = 3, isAI = false) {
         this.#sketch = sketch;
         this.#gridSize = gridSize;
         this.#board = ((m, n) => Array.from({ length: m }, () => new Array(n).fill(null)))(this.#gridSize, this.#gridSize);
@@ -35,10 +38,11 @@ class TicTacToe {
 
         this.#createGrid(8, 70);
         this.#winningLine = null;
+        this.#isAI = isAI;
     }
 
-    checkIfEmpty(posx, posy){
-        return this.#board[posx][posy] == null; 
+    checkIfEmpty(posx, posy) {
+        return this.#board[posx][posy] == null;
     }
 
     #createGrid(gridWidth, gridPadding) {
@@ -49,12 +53,12 @@ class TicTacToe {
             const start_h = this.#sketch.createVector(0 + gridPadding, this.#sketch.height / this.gridSize * i);
             const end_h = this.#sketch.createVector(this.#sketch.width - gridPadding, this.#sketch.height / this.gridSize * i);
             if (i % 2 == 0) {
-                this.#gridLines.push(new AnimatedLine(this.#sketch, end_v, start_v, this.#sketch.color(246, 233, 233, 240), gridWidth))
-                this.#gridLines.push(new AnimatedLine(this.#sketch, end_h, start_h, this.#sketch.color(246, 233, 233, 240), gridWidth))
+                this.#gridLines.push(new AnimatedLine(this.#sketch, end_v, start_v, this.#sketch.color(0, 0, 0, 240), gridWidth))
+                this.#gridLines.push(new AnimatedLine(this.#sketch, end_h, start_h, this.#sketch.color(0, 0, 0, 240), gridWidth))
             }
             else {
-                this.#gridLines.push(new AnimatedLine(this.#sketch, start_v, end_v, this.#sketch.color(246, 233, 233, 240), gridWidth))
-                this.#gridLines.push(new AnimatedLine(this.#sketch, start_h, end_h, this.#sketch.color(246, 233, 233, 240), gridWidth))
+                this.#gridLines.push(new AnimatedLine(this.#sketch, start_v, end_v, this.#sketch.color(0, 0, 0, 240), gridWidth))
+                this.#gridLines.push(new AnimatedLine(this.#sketch, start_h, end_h, this.#sketch.color(0, 0, 0, 240), gridWidth))
             }
         }
     }
@@ -77,7 +81,7 @@ class TicTacToe {
     nextTurn(posx, posy) {
         if (this.#gameOver) return;
 
-        if (isAI) {
+        if (this.#isAI) {
             if (this.#currentPlayer == player1) {
                 if (this.#board[posx][posy] == null) {
                     this.#board[posx][posy] = new Cross(this.#sketch, posx, posy, this.#sketch.width / 6);
@@ -185,7 +189,7 @@ class TicTacToe {
     }
 
     #place_winning_line(a, b) {
-        this.#winningLine = new AnimatedLine(this.#sketch, a.getCenter(), b.getCenter(), this.#sketch.color(246, 233, 233, 200), 7);
+        this.#winningLine = new AnimatedLine(this.#sketch, a.getCenter(), b.getCenter(), this.#sketch.color(0, 0, 0, 200), 7);
     }
 
     checkWinner() {

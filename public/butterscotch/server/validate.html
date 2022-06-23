@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+    <a href="b_server.html" style="text-decoration: none;">
+        <button type="button" class="transparent-button">
+            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </button>
+    </a>
+    <div>
+        <h1 class="title">Server <br>
+            <ion-icon name="game-controller-outline"></ion-icon>
+        </h1>
+    </div>
+    <div class="container">
+        <form class="form">
+            <input type="text" placeholder="Code" id="code" class="button" style="width:200px;" />
+        </form>
+        <a href="index2.html">
+            <button type="button" class="button" onclick="validate()">
+                <span class="button_text1">Validate</span>
+            </button>
+        </a>
+        <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+        <script>
+            function validate() {
+                localStorage.setItem('validatecode', document.getElementById('code').value);
+            }
+        </script>
+</body>
+
+</html>
